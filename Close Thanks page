@@ -1,0 +1,29 @@
+document.getElementById("btn-immediate").addEventListener("click", function() {
+    // Close in direct response to a user action
+    console.log("Calling window.close");
+    window.close();
+    console.log("Done calling window.close");
+}, false);
+
+document.getElementById("btn-delay").addEventListener("click", function() {
+    // Close in an INdirect response to a user action
+    console.log("Scheduling timed callback");
+    setTimeout(function() {
+        console.log("Calling window.close");
+        window.close();
+        console.log("Done calling window.close");
+    }, 0);
+}, false);
+
+// Auto close after 15 seconds
+var counter = 15;
+tick();
+function tick() {
+    if (--counter == 0) {
+        window.close();
+        document.getElementById("countdown").innerHTML = "If the page is still here, auto-close failed";
+    } else {
+        document.getElementById("countdown").innerHTML = counter;
+        setTimeout(tick, 1000);
+    }
+}
